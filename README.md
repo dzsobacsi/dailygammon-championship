@@ -22,3 +22,6 @@ This script is supposed to help with the result administration. It collects matc
 >  'players': ['hcc1670', 'dzsobacsi'],   
 >  'winner': 'dzsobacsi',   
 >  'score': [3, 11]}
+
+To check your authentication cookie open DevTools by pressing F12 (Chrome and variants)
+![Cookie.png](Cookie.png)
