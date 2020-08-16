@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import requests
 import os
+import pprint
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -40,10 +41,15 @@ def match_result(mid):
 
     URL = "http://dailygammon.com/bg/export/" + str(mid)
     cookies = {"USERID": USERID, "PASSWORD": PASSWORD}
-
     r = requests.get(URL, cookies=cookies)
-    lines = r.text.splitlines()
 
+    if r.headers["content-type"] != "text/plain":
+        return {
+            "match-id": mid,
+            "warning": "the match is not finished yet"
+        }
+
+    lines = r.text.splitlines()
     players = get_players()
 
     return {
@@ -63,6 +69,7 @@ with open("input.txt") as file:
     matches = list(map(int, matches))
 
 for i in matches:
-    result = match_result(i)
-    print("Match-ID: {}\nPlayers: {}\nWinner: {}\nScore: {}\n"
-        .format(result["match-id"], result["players"], result["winner"], result["score"]))
+    pprint.pp(match_result(i))
+    print("\n")
+    #print("Match-ID: {}\nPlayers: {}\nWinner: {}\nScore: {}\n"
+    #    .format(result["match-id"], result["players"], result["winner"], result["score"]))
