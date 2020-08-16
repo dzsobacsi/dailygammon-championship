@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import requests
-import json
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -60,8 +59,8 @@ PASSWORD = os.getenv("PASSWORD")
 matches = []
 
 with open("input.txt") as file:
-    data = json.load(file)
-    matches = data['matches']
+    matches = file.readlines()
+    matches = list(map(int, matches))
 
 for i in matches:
     result = match_result(i)
