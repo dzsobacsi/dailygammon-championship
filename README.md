@@ -7,7 +7,10 @@ This script is supposed to help with the result administration. It collects matc
 * Your authentication token is stored in a cookie you receive from DailyGammon
 * Rename .env-example to .env, and fill USERID and PASSWORD according to the cookie 
 * Add the match-IDs to input.txt. Each ID shall go to a separate line
+    * If you open a match export or review in DailyGammon, the URL will look like `http://dailygammon.com/bg/export/4311203` or `http://dailygammon.com/bg/game/4311742/1/list`. The 7 digit number in the url is the match-ID
 * Once you execute match_result.py, the output should be something like that
+    * If you make it executable, it can run on any Linux machine
+    * For Windows, you have to change the first line of the script to `#! python3`
 
 > {'match-id': 4310727,   
 >  'players': ['dzsobacsi', 'hentea'],   
