@@ -11,7 +11,7 @@ This script is supposed to help with the result administration. It collects matc
 * Once you execute match_result.py, the output should be something like that (see output.txt as an example)
     * If you make it executable (`chmod +x match_result.py`), it can run on any Linux machine
     * For Windows, you have to change the first line of the script to `#! python3`
-    * start it from the command line: `./match_result.py`
+    * Start it from the command line: `./match_result.py` (in case of Linux, I am not sure about Windows)
 
 > {'match-id': 4310727,   
 >  'players': ['dzsobacsi', 'hentea'],   
