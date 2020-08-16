@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import requests
 import os
-import pprint
 import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
@@ -60,27 +59,26 @@ def match_result(mid):
         "score": get_points()
     }
 
+#
+#    MAIN
+#
 
 USERID = os.getenv("USERID")
 PASSWORD = os.getenv("PASSWORD")
 matchIds = []
-results = []
 players_set = set()
 
 with open("input.txt") as file:
     matchIds = file.readlines()
     matchIds = list(map(int, matchIds))
 
-for i in matchIds:
-    results.append(match_result(i))
+results = [match_result(mid) for mid in matchIds]
 
-#pprint.pp(results)
 for i in results:
     if "players" in i:
         players_set.add(i["players"][0])
         players_set.add(i["players"][1])
 
-#print("\n")
 players = list(players_set)
 players = sorted(players, key=str.lower)
 columns = ["won", "lost", "+", "-", "total"]
@@ -104,6 +102,7 @@ for res in results:
         summary_df.loc[ply[1], "total"] += scr[1] - scr[0]
 
 summary_df = summary_df.sort_values(by=["won", "total"], ascending=False)
+
 print("\n")
 print(results_df)
 print("\n")
