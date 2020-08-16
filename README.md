@@ -9,8 +9,9 @@ This script is supposed to help with the result administration. It collects matc
 * Add the match-IDs to input.txt. Each ID shall go to a separate line (see input.txt as an example)
     * If you open a match export or review in DailyGammon, the URL will look like `http://dailygammon.com/bg/export/4311203` or `http://dailygammon.com/bg/game/4311742/1/list`. The 7 digit number in the url is the match-ID
 * Once you execute match_result.py, the output should be something like that (see output.txt as an example)
-    * If you make it executable, it can run on any Linux machine
+    * If you make it executable (`chmod +x match_result.py`), it can run on any Linux machine
     * For Windows, you have to change the first line of the script to `#! python3`
+    * start it from the command line: `./match_result.py`
 
 > {'match-id': 4310727,   
 >  'players': ['dzsobacsi', 'hentea'],   
