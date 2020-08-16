@@ -3,7 +3,6 @@ import requests
 import os
 import pprint
 import pandas as pd
-from math import isnan
 from dotenv import load_dotenv
 load_dotenv()
 
