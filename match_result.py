@@ -2,6 +2,8 @@
 import requests
 import os
 import pprint
+import pandas as pd
+from math import isnan
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -55,21 +57,55 @@ def match_result(mid):
     return {
         "match-id": mid,
         "players": players,
-        "winner": players[get_winner()],
+        "winner": get_winner(),
         "score": get_points()
     }
 
 
 USERID = os.getenv("USERID")
 PASSWORD = os.getenv("PASSWORD")
-matches = []
+matchIds = []
+results = []
+players_set = set()
 
 with open("input.txt") as file:
-    matches = file.readlines()
-    matches = list(map(int, matches))
+    matchIds = file.readlines()
+    matchIds = list(map(int, matchIds))
 
-for i in matches:
-    pprint.pp(match_result(i))
-    print("\n")
-    #print("Match-ID: {}\nPlayers: {}\nWinner: {}\nScore: {}\n"
-    #    .format(result["match-id"], result["players"], result["winner"], result["score"]))
+for i in matchIds:
+    results.append(match_result(i))
+
+#pprint.pp(results)
+for i in results:
+    if "players" in i:
+        players_set.add(i["players"][0])
+        players_set.add(i["players"][1])
+
+#print("\n")
+players = list(players_set)
+players = sorted(players, key=str.lower)
+columns = ["won", "lost", "+", "-", "total"]
+results_df = pd.DataFrame(index=players, columns=players)
+summary_df = pd.DataFrame(index=players, columns=columns)
+summary_df = summary_df.fillna(0)
+
+for res in results:
+    if "players" in res:
+        ply = res["players"]
+        scr = res["score"]
+        wnr = res["winner"]
+        results_df.loc[ply[0], ply[1]] = str(scr[0]) + ":" + str(scr[1])
+        summary_df.loc[ply[wnr], "won"] += 1
+        summary_df.loc[ply[1-wnr], "lost"] += 1
+        summary_df.loc[ply[0], "+"] += scr[0]
+        summary_df.loc[ply[0], "-"] -= scr[1]
+        summary_df.loc[ply[0], "total"] += scr[0] - scr[1]
+        summary_df.loc[ply[1], "+"] += scr[1]
+        summary_df.loc[ply[1], "-"] -= scr[0]
+        summary_df.loc[ply[1], "total"] += scr[1] - scr[0]
+
+summary_df = summary_df.sort_values(by=["won", "total"], ascending=False)
+print("\n")
+print(results_df)
+print("\n")
+print(summary_df)
