@@ -13,6 +13,7 @@ This script is supposed to help with the result administration. It collects matc
     * For Windows, you have to change the first line of the script to `#! python3`
     * Start it from the command line: `./match_result.py` (in case of Linux, I am not sure about Windows)
     * Be patient, execution can take up to 30 seconds
+    * Nan indicates unfished matches
     
    
 ![results](pics/group_results.png)
