@@ -8,24 +8,14 @@ This script is supposed to help with the result administration. It collects matc
 * Rename .env-example to .env, and fill USERID and PASSWORD according to the cookie 
 * Add the match-IDs to input.txt. Each ID shall go to a separate line (see input.txt as an example)
     * If you open a match export or review in DailyGammon, the URL will look like `http://dailygammon.com/bg/export/4311203` or `http://dailygammon.com/bg/game/4311742/1/list`. The 7 digit number in the url is the match-ID
-* Once you execute match_result.py, the output should be something like that (see output.txt as an example)
+* Once you execute match_result.py, the output should be something like this
     * If you make it executable (`chmod +x match_result.py`), it can run on any Linux machine
     * For Windows, you have to change the first line of the script to `#! python3`
     * Start it from the command line: `./match_result.py` (in case of Linux, I am not sure about Windows)
-
-> {'match-id': 4310727,   
->  'players': ['dzsobacsi', 'hentea'],   
->  'winner': 'hentea',  
->  'score': [9, 11]}  
-> 
-> 
-> {'match-id': 4310718, 'warning': 'the match is not finished yet'}
-> 
-> 
-> {'match-id': 4311237,  
->  'players': ['hcc1670', 'dzsobacsi'],   
->  'winner': 'dzsobacsi',   
->  'score': [3, 11]}
+    * Be patient, execution can take up to 30 seconds
+    
+   
+![results](pics/group_results.png)
 
 To check your authentication cookie open DevTools by pressing F12 (Chrome and variants)
-![Cookie.png](Cookie.png)
+![Cookie.png](pics/Cookie.png)
