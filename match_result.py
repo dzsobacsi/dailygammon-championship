@@ -81,7 +81,7 @@ for i in results:
 
 players = list(players_set)
 players = sorted(players, key=str.lower)
-columns = ["won", "lost", "+", "-", "total"]
+columns = ["finished", "won", "lost", "+", "-", "total"]
 
 results_df = pd.DataFrame(index=players, columns=players)
 for i in range(results_df.shape[0]):
@@ -97,7 +97,9 @@ for res in results:
         wnr = res["winner"]
         results_df.loc[ply[0], ply[1]] = str(scr[0]) + ":" + str(scr[1])
         summary_df.loc[ply[wnr], "won"] += 1
+        summary_df.loc[ply[wnr], "finished"] += 1
         summary_df.loc[ply[1-wnr], "lost"] += 1
+        summary_df.loc[ply[1-wnr], "finished"] += 1
         summary_df.loc[ply[0], "+"] += scr[0]
         summary_df.loc[ply[0], "-"] -= scr[1]
         summary_df.loc[ply[0], "total"] += scr[0] - scr[1]
