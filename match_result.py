@@ -82,7 +82,11 @@ for i in results:
 players = list(players_set)
 players = sorted(players, key=str.lower)
 columns = ["won", "lost", "+", "-", "total"]
+
 results_df = pd.DataFrame(index=players, columns=players)
+for i in range(results_df.shape[0]):
+    results_df.iloc[i, i] = "----"
+
 summary_df = pd.DataFrame(index=players, columns=columns)
 summary_df = summary_df.fillna(0)
 
