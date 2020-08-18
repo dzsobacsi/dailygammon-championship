@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import requests
 import os
 import pandas as pd
@@ -113,3 +112,8 @@ print("\n")
 print(results_df)
 print("\n")
 print(summary_df)
+
+writer = pd.ExcelWriter('output.xlsx')
+results_df.to_excel(writer, "results")
+summary_df.to_excel(writer, "summary")
+writer.save()
