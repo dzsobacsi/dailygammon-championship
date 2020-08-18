@@ -10,7 +10,7 @@ def match_result(mid):
     this function returns a dictionary with the match id, the player names,
     the winner and the match score
 
-    mid: dailygammon match-id as an integer
+    mid: dailygammon match-id as a string
     """
     def get_winner():
         str = lines[-1]
@@ -39,7 +39,7 @@ def match_result(mid):
         players = lines[3].split()
         return [players[0], players[3]]
 
-    URL = "http://dailygammon.com/bg/export/" + str(mid)
+    URL = "http://dailygammon.com/bg/export/" + mid
     cookies = {"USERID": USERID, "PASSWORD": PASSWORD}
     r = requests.get(URL, cookies=cookies)
 
@@ -73,7 +73,7 @@ if len(sys.argv) < 2:
 
 with open(sys.argv[1]) as file:
     matchIds = file.readlines()
-    matchIds = list(map(int, matchIds))
+    matchIds = [mid[:7] for mid in matchIds]
 
 results = [match_result(mid) for mid in matchIds]
 
