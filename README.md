@@ -5,8 +5,36 @@ This script is supposed to help with the result administration. It collects matc
 ![results](pics/group_results.png)
 
 ## installation (Linux)
+* Prerequisites:
+    * Python: most Linux distributions come with Python preisntalled
+    * pip (or pip3): `sudo apt install python3-pip`
+    * git: `sudo apt install git-all`
+* Navigate to any dictionary you want to use as a working directory
+* Clone the project: `git clone https://github.com/dzsobacsi/dailygammon-championship.git` 
+* `cd dailygammon-championship`
+* Install virtualenv: `pip install virtualenv` (use pip3 if necessary)
+* Create a virtual environment: `virtualenv venv`
+* Activate it: `source venv/bin/activate`
+* Install all the requirements: `pip install -r requirements.txt`
+* Create your .env file (see below)
+* Now you can run the script: `python match_results.py test_input.txt`
 
+## installation (Windows)
 
+## .env
+* The program uses your DailyGammon credentials to fetch the results, which is stored in a file called .env
+* Log in to DailyGammon
+* Press F12 to open Dev Tools (in case of Chrome and variants)
+* Select Application at the top
+* Select Coockies at the left
+* Select dailygammon.com
+* Now you see your cookie with two parameters: USERID and PASSWORD
+* A template is available in the project as .env-example
+* Rename it to .env
+* Enter your USERID and PASSWORD between the single quotes
+* Save the .env file
+
+![Cookie.png](pics/Cookie.png)
 
 ## usage
 * Make sure that you are logged in to DailyGammon
@@ -21,6 +49,3 @@ This script is supposed to help with the result administration. It collects matc
     * Be patient, execution can take up to 30 seconds
     * Nan indicates unfished matches
     
-
-To check your authentication cookie open DevTools by pressing F12 (Chrome and variants)
-![Cookie.png](pics/Cookie.png)
