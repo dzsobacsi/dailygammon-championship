@@ -1,6 +1,12 @@
 # dailygammon-championship
 
-This script is supposed to help with the result administration. It collects match results based on match IDs. For now, it works for finished matches only. 
+This script is supposed to help with the result administration. It collects match results based on match IDs and saves the results to an Excel file. Results are also output to the console, as shown in the picture below. For now, it works for finished matches only. 
+
+![results](pics/group_results.png)
+
+## installation (Linux)
+
+
 
 ## usage
 * Make sure that you are logged in to DailyGammon
@@ -15,8 +21,6 @@ This script is supposed to help with the result administration. It collects matc
     * Be patient, execution can take up to 30 seconds
     * Nan indicates unfished matches
     
-   
-![results](pics/group_results.png)
 
 To check your authentication cookie open DevTools by pressing F12 (Chrome and variants)
 ![Cookie.png](pics/Cookie.png)
