@@ -1,5 +1,6 @@
 import requests
 import os
+import sys
 import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
@@ -67,7 +68,10 @@ PASSWORD = os.getenv("PASSWORD")
 matchIds = []
 players_set = set()
 
-with open("input.txt") as file:
+if len(sys.argv) < 2:
+    sys.exit("Input file name is missing\nUsage example: python match_result.py input.txt")
+
+with open(sys.argv[1]) as file:
     matchIds = file.readlines()
     matchIds = list(map(int, matchIds))
 
@@ -113,7 +117,7 @@ print(results_df)
 print("\n")
 print(summary_df)
 
-writer = pd.ExcelWriter('output.xlsx')
+writer = pd.ExcelWriter(sys.argv[1].split(".")[0] + ".xlsx")
 results_df.to_excel(writer, "results")
 summary_df.to_excel(writer, "summary")
 writer.save()
