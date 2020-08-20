@@ -18,13 +18,8 @@ def match_result(mid):
         if "and the match" not in str:
             print("something is wrong with the winner function argument")
             return None
-        spaces_before = 0
-        for i in str:
-            if i.isspace():
-                spaces_before += 1
-            else:
-                break
-        return 1 if spaces_before > 6 else 0
+        position = str.find("Wins")
+        return 1 if position > 6 else 0
 
     def get_points():
         i = len(lines) - 1
@@ -41,10 +36,9 @@ def match_result(mid):
         players = lines[3]
         players = re.split(" : \d+", players)
         players = [p.strip() for p in players]
-        return [players[0], players[1]]
+        return players[:2]
 
     URL = "http://dailygammon.com/bg/export/" + mid
-    cookies = {"USERID": USERID, "PASSWORD": PASSWORD}
     r = requests.get(URL, cookies=cookies)
 
     if r.headers["content-type"] != "text/plain":
@@ -55,6 +49,12 @@ def match_result(mid):
 
     lines = r.text.splitlines()
     players = get_players()
+
+    #Test output
+    #print(mid)
+    #print(players)
+    #print(get_winner())
+    #print(get_points())
 
     return {
         "match-id": mid,
@@ -69,6 +69,7 @@ def match_result(mid):
 
 USERID = os.getenv("USERID")
 PASSWORD = os.getenv("PASSWORD")
+cookies = {"USERID": USERID, "PASSWORD": PASSWORD}
 matchIds = []
 players_set = set()
 
