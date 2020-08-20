@@ -1,5 +1,6 @@
 import requests
 import os
+import re
 import sys
 import pandas as pd
 from dotenv import load_dotenv
@@ -27,17 +28,20 @@ def match_result(mid):
 
     def get_points():
         i = len(lines) - 1
-        while lines[i].split()[0] != players[0]:
+        while lines[i].split(":")[0].strip() != players[0]:
             i -= 1
-        points = lines[i].split()
-        points = [points[2], points[5]]
+        points = lines[i]
+        points = re.findall(": \d+", points)
+        points = [p[2:] for p in points]
         points[get_winner()] = '11'
         points = list(map(int, points))
         return points
 
     def get_players():
-        players = lines[3].split()
-        return [players[0], players[3]]
+        players = lines[3]
+        players = re.split(" : \d+", players)
+        players = [p.strip() for p in players]
+        return [players[0], players[1]]
 
     URL = "http://dailygammon.com/bg/export/" + mid
     cookies = {"USERID": USERID, "PASSWORD": PASSWORD}
