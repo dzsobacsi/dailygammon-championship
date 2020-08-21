@@ -1,6 +1,6 @@
 # dailygammon-championship
 
-This script is supposed to help with the result administration. It collects match results based on match IDs and saves the results to an Excel file. Results are also output to the console, as shown in the picture below. For now, it works for finished matches only. 
+This package is supposed to help with the result administration. It collects match results based on match IDs and saves the results to an Excel file. Results are also output to the console, as shown in the picture below. For now, it works for finished matches only. 
 
 ![results](pics/group_results.png)
 
@@ -9,12 +9,12 @@ Clone or download the whole project. In the dist folder, there is an exe and a L
 
 ## usage
 * Create a working directory
-* Download the executable
+* Copy the executable into it (from the project's dist folder)
 * Create your .env file in the same directory (see below - you have to do this only once)
 * Create your input file in the same directory (see below - you have to do this only once per season)
 * Start the program from the command line, with adding the input file name as a command line argument, like below:
-    * Linux: `./match_result input.txt`
-    * Windows: `match_result.exe input.txt`
+    * Linux: `./dg-results input.txt`
+    * Windows: `dg-results.exe input.txt`
 * Be patient, execution can take up to 30 seconds
 * NaN indicates unfished matches
 
@@ -51,4 +51,4 @@ Clone or download the whole project. In the dist folder, there is an exe and a L
 * Activate it: `source venv/bin/activate`
 * Install all the requirements: `pip install -r requirements.txt`
 * Create your .env file
-* Now you can run the script: `python match_results.py test_input.txt`
+* Now you can run the script: `python dailygammon-championship test_input.txt`
